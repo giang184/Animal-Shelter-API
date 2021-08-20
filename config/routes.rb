@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :animals
   get '/search' => 'search#index'
-  get '/search/random' => 'search#random'
+  get '/random' => 'random#index'
 end
 

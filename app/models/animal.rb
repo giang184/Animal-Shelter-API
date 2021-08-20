@@ -7,5 +7,6 @@ class Animal < ApplicationRecord
   validates :color, presence: true
   validates :breed, presence: true
 
-  scope :search_by_breed, -> (parameter) { where('LOWER(breed) like ?', "%#{parameter.downcase}%").limit(10)}
+  scope :search_by_breed, -> (parameter) { where('LOWER(breed) like ?', "%#{parameter.downcase}%").limit(25)}
+  scope :search_by_age, -> (parameter) { where('age <=?', "#{parameter.to_i}").limit(25)}
 end
