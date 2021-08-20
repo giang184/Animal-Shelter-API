@@ -13,6 +13,7 @@ class Seed
   end
 
   def generate
+    Animal.destroy_all
     200.times do |i| 
       dog = Animal.create!(
         name: Faker::Creature::Dog.name,
