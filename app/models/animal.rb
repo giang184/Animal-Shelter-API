@@ -9,4 +9,5 @@ class Animal < ApplicationRecord
 
   scope :search_by_breed, -> (parameter) { where('LOWER(breed) like ?', "%#{parameter.downcase}%").limit(25)}
   scope :search_by_age, -> (parameter) { where('age <=?', "#{parameter.to_i}").limit(25)}
+  scope :search_by_weight, -> (parameter) { where('weight <=?', "#{parameter.to_i}").limit(25)}
 end

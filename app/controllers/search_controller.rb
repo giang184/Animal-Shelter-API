@@ -3,12 +3,16 @@ class SearchController < ApplicationController
     if params[:breed]
       @animals = Animal.search_by_breed(params[:breed])
       return json_response(@animals)
-    elsif params[:age]
-      @animals = Animal.search_by_age(params[:age])
+    elsif params[:max_age]
+      @animals = Animal.search_by_age(params[:max_age])
+      return json_response(@animals)
+    elsif params[:max_weight]
+      @animals = Animal.search_by_weight(params[:max_weight])
       return json_response(@animals)
     else
-      @animals = Animal.page(2)
-      return json_response(@animals)
+      render status: 401, json: {
+        message: "This search doesn't have the correct parameters inputted"
+      }
     end
   end
 end
