@@ -1,52 +1,70 @@
-## Description
+# Animal Shelter API by Andrew Giang
+This is a one day project to create an animal shelter API. 
 
-This is a basic scaffolded Rails API using Docker with Ruby 2.6.5, Rails 5.2.4, and Postgres 12.1. This project can be used in lieu of installing Ruby, Rails and Postgres on your machine when you are working with Rails APIs during week 6 of Epicodus. When you run `docker-compose up`, Docker will create two containers on your machine: a Ruby/Rails environment running the local server and a Postgres container where your database is stored.
+## Technology Used
+* _Ruby_
+* _rails_
+* _Docker_
+* _PostgresSQL_
+* _Ruby Gems: rspec, pry, faker, Kaminari
 
-### Windows Users
+## Objectives
 
-You will need to uncomment the following line in `Dockerfile` for the `entrypoint.sh` script to run correctly:
+* Full CRUD functionality for Animal Shelter API.
+* Routes are in place to return API calls.
+* A RANDOM endpoint that randomly returns a park/business/animal.
+* A second custom endpoint that accepts parameters (example: a SEARCH route that allows users to search by specific park names).
+* Model scopes to process parameters from API calls.
+* Randomized data with Faker or your own custom seed code.
+* Further exploration feature included: pagination 
 
-```
-RUN sed -i -e 's/\r$//' /usr/bin/entrypoint.sh
-```
+## Set up and Installation
+* This project runs on Ruby or Docker. You need to have either application installed on your local machine.
+* Download or Clone this directory into your local drive.
+* In your terminal, go to the project's root directory and run `compose up --build`
+* If you nagivate to `http://localhost:3000/` without setting up a database, though, you'll get a `PG::ConnectionBad` error.
+* You will need to create the database and seed the database in order for the live server to render. To create a database on your local machine, you will need to run `rake db:create` and run migrations to create this project's tables by running `rake db:migrate` and `rake db:test:prepare`
+* Once the database is set up, you can navigate to `http://localhost:3000/` to see the landing page
+* If you want to seed the database with fake data, you can run `rake db:seed`
+* When you're done running the server, you should always type in `docker-compose down` to gracefully stop the container.
 
-This line switches the line ending format so it works correctly with Windows. (Note that if the line above is uncommented, the script won't run correctly with Mac machines.)
+## API and Endpoints Information
+All endpoints can also be rendered on Heroku by replace `http://localhost:3000` with `https://giang-animal-shelter-api.herokuapp.com`
 
-### Running Rails and Postgres Servers
 
-The included code has a single API endpoint at: `http://localhost:3000/quotes`. Once you create and migrate the database, you'll be able to access it.
+`http://localhost:3000/animals`
+`https://giang-animal-shelter-api.herokuapp.com/animals`
+* returns a list of all animals in the database.
 
-* First run `docker-compose up` to build the project. Next, you'll need to add a database.
+`http://localhost:3000/animals?page=1`
+* returns a the specified page (25 elements each) of the database.
 
-### Running Shell Commands
+`http://localhost:3000/random`
+* returns a random animal in the database.
 
-To access a shell environment to run `rails c`, run migrations, or run other `rake` and `rails` tasks such as `rails routes`, you'll need to do the following.
+`http://localhost:3000/random?count=4`
+* returns 4 random animals in the database.
 
-Run the following command in the root directory of the project:
+`http://localhost:3000/search?breed=spaniel`
+* returns all animals whose breed includes the word spaniel.
 
-```
-$ docker-compose run api sh
-```
+`http://localhost:3000/search?max_age=10`
+* returns all animals whose age is less than or equal to 10.
 
-It's not necessary for the containers to be running (with `$ docker-compose up`). Note that the service name has been changed from `web` to `api`.
+`http://localhost:3000/search?max_weight=50`
+* returns all animals whose weight is less than or equal to 50.
 
-This will open a shell where you can run any commands in the web application's environment. This includes the following commands:
+`http://localhost:3000/search?breed=spaniel&max_weight=50&max_age=10`
+* returns all animals whose breed includes the word spaniel, whose weight and age are at most 50 and 10 respectively.
 
-* `$ bundle exec rake db:create` (and any other Rake commands)
-* `$ rails routes` and `$ rails c` (as well as any other Rails commands)
-* `$ bundle exec rspec` (to run tests)
-* `$ irb` (if you just need a basic Ruby REPL)
+## Known Bugs
 
-Once you create and migrate the database, you can go to `http://localhost:3000/quotes` in Postman or the browser to see the API's response.
+* none
 
-### What if I want to add more gems to my project?
+## License
 
-You'll need to complete the following steps:
+[MIT](https://en.wikipedia.org/wiki/MIT_License)
 
-* First, add the gems to the project.
+## Contact Information
 
-* Run `docker-compose run web bundle install`. This will bundle the new gems.
-
-* Next, run `docker-compose up --build`. This will rebuild the project.
-
-To read Docker's documentation on running projects using Ruby and Rails, see [Quickstart: Compose and Rails](https://docs.docker.com/compose/rails/).
+Andrew Giang | giang184@gmail.com
