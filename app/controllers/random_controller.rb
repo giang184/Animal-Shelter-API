@@ -1,9 +1,9 @@
 class RandomController < ApplicationController
   def index
-    if params[:number]
+    if params[:count]
       @array = []
       animals = Animal.all
-      params[:number].to_i.times do
+      params[:count].to_i.times do
         element = animals.sample
         @array.push(element)
         animals.delete(element)
