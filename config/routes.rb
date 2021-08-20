@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :quotes
+  resources :animals
 end
 
