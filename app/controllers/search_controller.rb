@@ -4,10 +4,10 @@ class SearchController < ApplicationController
       @animals = Animal.search_by_breed(params[:breed])
       return json_response(@animals)
     elsif params[:max_age]
-      @animals = Animal.search_by_age(params[:max_age])
+      @animals = Animal.search_by_max_age(params[:max_age])
       return json_response(@animals)
     elsif params[:max_weight]
-      @animals = Animal.search_by_weight(params[:max_weight])
+      @animals = Animal.search_by_max_weight(params[:max_weight])
       return json_response(@animals)
     else
       render status: 401, json: {

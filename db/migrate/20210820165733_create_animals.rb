@@ -5,7 +5,7 @@ class CreateAnimals < ActiveRecord::Migration[5.2]
       t.column :animal_type, :string
       t.column :gender, :string
       t.column :age, :integer
-      t.column :weight, :string
+      t.column :weight, :integer
       t.column :color, :string
       t.column :breed, :string
     end

@@ -1,8 +1,13 @@
 class AnimalsController < ApplicationController
 
   def index
-    @animals = Animal.all
-    json_response(@animals)
+    if params[:page]
+      @animals = Animal.page(params[:breed].to_i)
+      return json_response(@animals)
+    else
+      @animals = Animal.all
+      return json_response(@animals)
+    end
   end
 
   def show

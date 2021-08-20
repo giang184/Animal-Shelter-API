@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_08_20_165733) do
     t.string "animal_type"
     t.string "gender"
     t.integer "age"
-    t.string "weight"
+    t.integer "weight"
     t.string "color"
     t.string "breed"
   end
