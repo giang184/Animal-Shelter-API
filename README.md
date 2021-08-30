@@ -73,7 +73,7 @@ This is a one day project to create an animal shelter API.
 
 ## Known Bugs
 
-* none
+* pagination only renders page 1.
 
 ## License
 
