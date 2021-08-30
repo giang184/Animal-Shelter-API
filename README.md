@@ -6,6 +6,7 @@ This is a one day project to create an animal shelter API.
 * _rails_
 * _Docker_
 * _PostgresSQL_
+* _Postman_
 * _Ruby Gems: rspec, pry, faker, Kaminari
 
 ## Objectives
@@ -29,33 +30,46 @@ This is a one day project to create an animal shelter API.
 * When you're done running the server, you should always type in `docker-compose down` to gracefully stop the container.
 
 ## API and Endpoints Information
-All endpoints can also be rendered on Heroku by replace `http://localhost:3000` with `https://giang-animal-shelter-api.herokuapp.com`
+* All endpoints can also be rendered on Heroku by replacing `http://localhost:3000` with `https://giang-animal-shelter-api.herokuapp.com`
 
+* ### Retrieving the entire list:
+  * In postman, you can send a `GET` request to `http://localhost:3000/animals`
+  * This will return a list of all animals in the database.
 
-`http://localhost:3000/animals`
-`https://giang-animal-shelter-api.herokuapp.com/animals`
-* returns a list of all animals in the database.
+* ### Retrieving the first 25 elements:
+  * In postman, you can send a `GET` request to `http://localhost:3000/animals?page=1`
+  * This will return the first 25 elements of the database
+  * Currently, you cannot access pagination pass page 1.
 
-`http://localhost:3000/animals?page=1`
-* returns a the specified page (25 elements each) of the database.
+* ### Retrieving a random element
+  * In postman, you can send a `GET` request to `http://localhost:3000/random`
+  * This will return a random animal in the database.
 
-`http://localhost:3000/random`
-* returns a random animal in the database.
+* ### Retrieving multiple random element
+  * In postman, you can send a `GET` request to `http://localhost:3000/random?count=4`
+  * The example above will return 4 random animals in the database.
+  * use the parameter: `count` (integer) to specify how many random elements to. 
 
-`http://localhost:3000/random?count=4`
-* returns 4 random animals in the database.
+* ### Creating a new element
+  * In postman, you can send a POST request to: `http://localhost:3000/animals`
+  * You will need to fill in all the required parameters: `name` (string), `animal_type` (string), `gender` (string), `age` (integer), `weight` (integer), `color` (string), `breed` (string).
 
-`http://localhost:3000/search?breed=spaniel`
-* returns all animals whose breed includes the word spaniel.
+* ### Updating a new element
+  * In postman, you can send a PUT request to: `http://localhost:3000/animals/:id`
+  * You will need to specify the id number and fill in at least one of the required parameters: `name` (string), `animal_type` (string), `gender` (string), `age` (integer), `weight` (integer), `color` (string), `breed` (string).
 
-`http://localhost:3000/search?max_age=10`
-* returns all animals whose age is less than or equal to 10.
+* ### Deleting an element
+  * In postman, you can send a DELETE request to: `http://localhost:3000/animals/:id`
+  * You will need to specify the id number to delete.
 
-`http://localhost:3000/search?max_weight=50`
-* returns all animals whose weight is less than or equal to 50.
-
-`http://localhost:3000/search?breed=spaniel&max_weight=50&max_age=10`
-* returns all animals whose breed includes the word spaniel, whose weight and age are at most 50 and 10 respectively.
+* ### Searching for elements
+  * In postman, you can send a `GET` request to `http://localhost:3000/search` to search for elements by breed, max age, or max weight
+  * use search parameter: `breed` (string), `max_age` (integer), or `max_weight` (integer) to specify the search fields. 
+  * For example, 
+    * `http://localhost:3000/search?breed=spaniel` will return all animals whose breed includes the word spaniel.
+    * `http://localhost:3000/search?max_age=10` will return all animals whose age is less than or   equal to 10.
+    * `http://localhost:3000/search?max_weight=50` will return all animals whose weight is less than or equal to 50.
+    * `http://localhost:3000/search?breed=spaniel&max_weight=50&max_age=10` will return all animals whose breed includes the word spaniel, whose weight and age are at most 50 and 10 respectively.
 
 ## Known Bugs
 
